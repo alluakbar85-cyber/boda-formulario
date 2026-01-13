@@ -170,14 +170,37 @@
 </head>
 
 <body>
+<script>
+document.getElementById("formulario").addEventListener("submit", function(e) {
+  e.preventDefault();
 
+  const data = {
+    nombre: document.querySelector('input').value,
+    acompanantes: document.querySelectorAll('select')[0].value,
+    asistencia: document.querySelectorAll('select')[1].value,
+    mensaje: document.querySelector('textarea').value
+  };
+
+  fetch("https://script.google.com/macros/s/AKfycbz6LI5taZc8SIaSu1KEWA4fejJlVAZodXofQpPelxJtV3MYnMAwqBZpsnriyVJLa1CILQ/exec", {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(() => {
+    alert("Gracias por confirmar tu asistencia 💍");
+    document.getElementById("formulario").reset();
+  })
+  .catch(() => {
+    alert("Error al enviar. Intenta otra vez.");
+  });
+});
+</script>
   <div class="card">
     <div class="rings">💍💍</div>
     <h1>Nuestra Boda</h1>
     <div class="divider"></div>
     <div class="subtitle">Confirma tu asistencia</div>
 
-    <form>
+    <form id="formulario">
       <label>👤 Nombre completo</label>
       <input type="text" placeholder="Ej. Ana Martínez" required>
 
