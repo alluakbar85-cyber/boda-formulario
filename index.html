@@ -183,8 +183,9 @@ document.getElementById("formulario").addEventListener("submit", function(e) {
 
   fetch("https://script.google.com/macros/s/AKfycbz6LI5taZc8SIaSu1KEWA4fejJlVAZodXofQpPelxJtV3MYnMAwqBZpsnriyVJLa1CILQ/exec", {
     method: "POST",
+    headers: { "Content-Type": "application/json" }, // <-- ESTO ES LO NUEVO
     body: JSON.stringify(data)
-  })
+})
   .then(() => {
     alert("Gracias por confirmar tu asistencia 💍");
     document.getElementById("formulario").reset();
