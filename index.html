@@ -31,13 +31,11 @@
       max-width: 540px;
       border-radius: 24px;
       box-shadow: 0 30px 60px rgba(232,106,141,0.25);
-      animation: fadeUp 1s ease forwards;
       position: relative;
       overflow: hidden;
       border: 1px solid rgba(232,106,141,0.25);
     }
 
-    /* Flores decorativas */
     .card::before,
     .card::after {
       content: "❀";
@@ -46,15 +44,8 @@
       color: rgba(232,106,141,0.18);
     }
 
-    .card::before {
-      top: 18px;
-      left: 22px;
-    }
-
-    .card::after {
-      bottom: 18px;
-      right: 22px;
-    }
+    .card::before { top: 18px; left: 22px; }
+    .card::after { bottom: 18px; right: 22px; }
 
     .rings {
       text-align: center;
@@ -64,137 +55,41 @@
       animation: pulse 2.6s infinite;
     }
 
-    h1 {
-      text-align: center;
-      font-size: 34px;
-      margin-bottom: 6px;
-      letter-spacing: 1px;
-      color: var(--rosa-vivo);
-    }
-
+    h1 { text-align: center; font-size: 34px; margin-bottom: 6px; letter-spacing: 1px; color: var(--rosa-vivo); }
     .divider {
       width: 100px;
       height: 3px;
-      background: linear-gradient(
-        to right,
-        var(--rosa-vivo),
-        var(--dorado),
-        var(--rosa-vivo)
-      );
+      background: linear-gradient(to right, var(--rosa-vivo), var(--dorado), var(--rosa-vivo));
       margin: 20px auto 28px;
       border-radius: 3px;
     }
+    .subtitle { text-align: center; font-size: 15px; margin-bottom: 36px; color: #8a5b6a; }
 
-    .subtitle {
-      text-align: center;
-      font-size: 15px;
-      margin-bottom: 36px;
-      color: #8a5b6a;
-    }
-
-    label {
-      font-size: 14px;
-      font-weight: bold;
-      display: block;
-      margin-bottom: 6px;
-      margin-top: 22px;
-      color: var(--texto);
-    }
-
+    label { font-size: 14px; font-weight: bold; display: block; margin-bottom: 6px; margin-top: 22px; color: var(--texto); }
     input, select, textarea {
-      width: 100%;
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(232,106,141,0.35);
-      font-size: 14px;
-      transition: all 0.3s ease;
-      font-family: inherit;
-      background: #fff;
+      width: 100%; padding: 14px; border-radius: 14px; border: 1px solid rgba(232,106,141,0.35);
+      font-size: 14px; font-family: inherit; background: #fff; transition: all 0.3s ease;
     }
-
     input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: var(--rosa-vivo);
-      box-shadow: 0 0 0 3px rgba(232,106,141,0.25);
+      outline: none; border-color: var(--rosa-vivo); box-shadow: 0 0 0 3px rgba(232,106,141,0.25);
     }
-
-    textarea {
-      resize: none;
-      height: 100px;
-    }
+    textarea { resize: none; height: 100px; }
 
     button {
-      margin-top: 42px;
-      width: 100%;
-      padding: 17px;
-      border: none;
-      border-radius: 18px;
-      background: linear-gradient(135deg, var(--rosa-vivo), #ff9bb3);
-      color: #fff;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      letter-spacing: 1px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      margin-top: 42px; width: 100%; padding: 17px; border: none; border-radius: 18px;
+      background: linear-gradient(135deg, var(--rosa-vivo), #ff9bb3); color: #fff; font-size: 16px; font-weight: bold;
+      cursor: pointer; letter-spacing: 1px; transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
+    button:hover { transform: translateY(-2px); box-shadow: 0 16px 35px rgba(232,106,141,0.55); }
 
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 35px rgba(232,106,141,0.55);
-    }
+    .footer { text-align: center; margin-top: 30px; font-size: 13px; color: #9a5a6b; }
 
-    .footer {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 13px;
-      color: #9a5a6b;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.12); }
-      100% { transform: scale(1); }
-    }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.12); } 100% { transform: scale(1); } }
   </style>
 </head>
 
 <body>
-<script>
-document.getElementById("formulario").addEventListener("submit", function(e) {
-  e.preventDefault();
 
-  const data = {
-    nombre: document.querySelector('input').value,
-    acompanantes: document.querySelectorAll('select')[0].value,
-    asistencia: document.querySelectorAll('select')[1].value,
-    mensaje: document.querySelector('textarea').value
-  };
-
-  fetch("https://script.google.com/macros/s/AKfycbz6LI5taZc8SIaSu1KEWA4fejJlVAZodXofQpPelxJtV3MYnMAwqBZpsnriyVJLa1CILQ/exec", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" }, // <-- ESTO ES LO NUEVO
-    body: JSON.stringify(data)
-})
-  .then(() => {
-    alert("Gracias por confirmar tu asistencia 💍");
-    document.getElementById("formulario").reset();
-  })
-  .catch(() => {
-    alert("Error al enviar. Intenta otra vez.");
-  });
-});
-</script>
   <div class="card">
     <div class="rings">💍💍</div>
     <h1>Nuestra Boda</h1>
@@ -234,6 +129,32 @@ document.getElementById("formulario").addEventListener("submit", function(e) {
       Con amor 🤍 | Un día inolvidable
     </div>
   </div>
+
+  <script>
+    document.getElementById("formulario").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const data = {
+        nombre: document.querySelector('input').value,
+        acompanantes: document.querySelectorAll('select')[0].value,
+        asistencia: document.querySelectorAll('select')[1].value,
+        mensaje: document.querySelector('textarea').value
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbz6LI5taZc8SIaSu1KEWA4fejJlVAZodXofQpPelxJtV3MYnMAwqBZpsnriyVJLa1CILQ/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(() => {
+        alert("Gracias por confirmar tu asistencia 💍");
+        document.getElementById("formulario").reset();
+      })
+      .catch(() => {
+        alert("Error al enviar. Intenta otra vez.");
+      });
+    });
+  </script>
 
 </body>
 </html>
