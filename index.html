@@ -3,22 +3,213 @@
 <head>
   <meta charset="UTF-8">
   <title>Confirmación de Asistencia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --dorado: #c9a24d;
+      --beige: #f4efe9;
+      --rosa-vivo: #e86a8d;
+      --rosa-claro: #fde4ec;
+      --texto: #5a3e3e;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, var(--rosa-claro), var(--beige));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      background: linear-gradient(180deg, #ffffff, var(--rosa-claro));
+      padding: 52px 44px;
+      width: 100%;
+      max-width: 540px;
+      border-radius: 24px;
+      box-shadow: 0 30px 60px rgba(232,106,141,0.25);
+      animation: fadeUp 1s ease forwards;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(232,106,141,0.25);
+    }
+
+    /* Flores decorativas */
+    .card::before,
+    .card::after {
+      content: "❀";
+      position: absolute;
+      font-size: 80px;
+      color: rgba(232,106,141,0.18);
+    }
+
+    .card::before {
+      top: 18px;
+      left: 22px;
+    }
+
+    .card::after {
+      bottom: 18px;
+      right: 22px;
+    }
+
+    .rings {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 8px;
+      color: var(--dorado);
+      animation: pulse 2.6s infinite;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+      color: var(--rosa-vivo);
+    }
+
+    .divider {
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(
+        to right,
+        var(--rosa-vivo),
+        var(--dorado),
+        var(--rosa-vivo)
+      );
+      margin: 20px auto 28px;
+      border-radius: 3px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 15px;
+      margin-bottom: 36px;
+      color: #8a5b6a;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+      margin-top: 22px;
+      color: var(--texto);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(232,106,141,0.35);
+      font-size: 14px;
+      transition: all 0.3s ease;
+      font-family: inherit;
+      background: #fff;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--rosa-vivo);
+      box-shadow: 0 0 0 3px rgba(232,106,141,0.25);
+    }
+
+    textarea {
+      resize: none;
+      height: 100px;
+    }
+
+    button {
+      margin-top: 42px;
+      width: 100%;
+      padding: 17px;
+      border: none;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--rosa-vivo), #ff9bb3);
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 35px rgba(232,106,141,0.55);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 13px;
+      color: #9a5a6b;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+      100% { transform: scale(1); }
+    }
+  </style>
 </head>
+
 <body>
 
-<h2>Confirma tu asistencia</h2>
+  <div class="card">
+    <div class="rings">💍💍</div>
+    <h1>Nuestra Boda</h1>
+    <div class="divider"></div>
+    <div class="subtitle">Confirma tu asistencia</div>
 
-<form action="https://formspree.io/f/TU_ENDPOINT" method="POST">
-  <input type="text" name="nombre" placeholder="Nombre completo" required><br><br>
+    <form>
+      <label>👤 Nombre completo</label>
+      <input type="text" placeholder="Ej. Ana Martínez" required>
 
-  <select name="asistencia" required>
-    <option value="">¿Asistirás?</option>
-    <option value="Sí">Sí</option>
-    <option value="No">No</option>
-  </select><br><br>
+      <label>👥 Número de acompañantes</label>
+      <select required>
+        <option value="">Selecciona</option>
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+      </select>
 
-  <button type="submit">Enviar</button>
-</form>
+      <label>📅 ¿Asistirás?</label>
+      <select required>
+        <option value="">Selecciona</option>
+        <option>Sí</option>
+        <option>No</option>
+      </select>
+
+      <label>💌 Mensaje para los novios (opcional)</label>
+      <textarea placeholder="Les deseamos toda la felicidad del mundo…"></textarea>
+
+      <button type="submit">Confirmar asistencia</button>
+    </form>
+
+    <div class="footer">
+      Con amor 🤍 | Un día inolvidable
+    </div>
+  </div>
 
 </body>
 </html>
