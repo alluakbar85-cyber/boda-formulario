@@ -101,22 +101,19 @@
 </div>
 
 <script>
-document.getElementById("formulario").addEventListener("submit", function(e){
+document.getElementById("formulario").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const nombre = document.getElementById("nombre").value;
-  const acompanantes = document.getElementById("acompanantes").value;
-  const asistencia = document.getElementById("asistencia").value;
-  const mensajeInput = document.getElementById("mensaje").value;
+  const nombre = encodeURIComponent(document.getElementById("nombre").value);
+  const acompanantes = encodeURIComponent(document.getElementById("acompanantes").value);
+  const asistencia = encodeURIComponent(document.getElementById("asistencia").value);
+  const mensaje = encodeURIComponent(document.getElementById("mensaje").value);
 
-  // Número de WhatsApp listo
-  const numeroWhatsApp = "5216631511399";
+  const numeroWhatsapp = "526631511399"; // tu número sin símbolos ni espacios
+  const texto = `¡Hola! Confirma asistencia:\nNombre: ${nombre}\nAcompañantes: ${acompanantes}\nAsistencia: ${asistencia}\nMensaje: ${mensaje}`;
 
-  const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(
-    `Hola, soy ${nombre}. Acompañantes: ${acompanantes}. Asistencia: ${asistencia}. Mensaje: ${mensajeInput}`
-  )}`;
-
-  window.open(url, "_blank"); // abre WhatsApp
+  // Abrir WhatsApp Web o App
+  window.open(`https://wa.me/${numeroWhatsapp}?text=${texto}`, "_blank");
 });
 </script>
 
